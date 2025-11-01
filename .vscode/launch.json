@@ -1,0 +1,13 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Run main",
+            "type": "debugpy",
+            "request": "launch",
+            "module": "PythonMinecraftClient.main",
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}\\.."
+        }
+    ]
+}
