@@ -1,9 +1,9 @@
-from .network_client import NetworkClient
+from .network_client import *
 from .packets import *
 from .datatypes import *
 from .session import *
 
-client = NetworkClient(server_factory=ServerPacketFactory340(Session()))
+client = NetworkClient()
 client.connect("localhost", 25565)
 
 client.send_packet(ClientHandshakePacket340(
@@ -16,9 +16,9 @@ client.set_state(2)
 client.send_packet(ClientLoginStartPacket340(
     name="imbot",
 ))
-print(client.recv_packet())
+print(client.get_packet())
 client.set_state(3)
-print(client.recv_packet())
+print(client.get_packet())
 client.send_packet(ClientClientSettingsPacket340(
     locale="en_GB",
     view_distance=1,
@@ -27,18 +27,18 @@ client.send_packet(ClientClientSettingsPacket340(
     displayed_skin_parts=255,
     main_hand=1,
 ))
-print(client.recv_packet())
-print(client.recv_packet())
-print(client.recv_packet())
-print(client.recv_packet())
-print(client.recv_packet())
-print(client.recv_packet())
-print(client.recv_packet())
-print(client.recv_packet())
-packet = client.recv_packet()
+print(client.get_packet())
+print(client.get_packet())
+print(client.get_packet())
+print(client.get_packet())
+print(client.get_packet())
+print(client.get_packet())
+print(client.get_packet())
+print(client.get_packet())
+packet = client.get_packet()
 while (True):
     print(type(packet))
-    packet = client.recv_packet()
+    packet = client.get_packet()
 
 while (type(packet) == ServerChunkDataPacket340 or
        type(packet) == ServerEntityPropertiesPacket340 or

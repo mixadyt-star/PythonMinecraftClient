@@ -14,7 +14,7 @@ class ServerPacketFactory:
         self.packets[state] = self.packets.get(state, {})
         self.packets[state][id] = packet
 
-    def create_packet(self, state: integer, data: bytes) -> ServerPacket:
+    def create_packet(self, state: int, data: bytes) -> ServerPacket:
         data = bytearray(data)
         id = VarInt.decode(data)
 
