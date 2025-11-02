@@ -1,6 +1,12 @@
-class DataType:
-    def __init__(self, inp):
-        self.inp = inp
+from typing import *
+from abc import *
 
-    def __repr__(self):
-        return self.__class__.__name__ + f"({self.inp})"
+
+class DataType(ABC):
+    @staticmethod
+    @abstractmethod
+    def encode(data: Any) -> bytes: ...
+
+    @staticmethod
+    @abstractmethod
+    def decode(data: bytearray) -> Any: ...

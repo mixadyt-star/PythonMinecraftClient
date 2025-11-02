@@ -1,16 +1,19 @@
-from ..datatypes import *
+from ...datatypes import *
 
 
-class Structure:
+class ClientPacket:
+    def __init__(self, packet_id: int):
+        self.packet_id = VarInt.encode(packet_id)
+
     def pack(self) -> bytes:
         payload = bytes()
 
         for value in self.__dict__.values():
             payload += value
 
-        return payload
-    
-    def __repr__(self, depth: int = 0):
+        return VarInt.encode(len(payload)) + payload
+
+    def __repr__(self, depth: int = 0) -> str:
         repr = self.__class__.__name__ + ":\n"
 
         for name, var in self.__dict__.items():

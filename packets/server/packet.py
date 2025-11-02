@@ -1,16 +1,13 @@
-from ..datatypes import *
+from ...session import Session
+from ...datatypes import *
 
+from abc import *
 
-class Structure:
-    def pack(self) -> bytes:
-        payload = bytes()
+class ServerPacket(ABC):
+    @abstractmethod
+    def __init__(self, data: bytearray, session: Session): ...
 
-        for value in self.__dict__.values():
-            payload += value
-
-        return payload
-    
-    def __repr__(self, depth: int = 0):
+    def __repr__(self, depth: int = 0) -> str:
         repr = self.__class__.__name__ + ":\n"
 
         for name, var in self.__dict__.items():

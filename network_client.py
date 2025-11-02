@@ -2,6 +2,7 @@ from .packets import *
 
 import socket
 
+
 class NetworkClient:
     def __init__(self, server_factory: ServerPacketFactory):
         self.connected = False
@@ -19,13 +20,13 @@ class NetworkClient:
         ))
         self.connected = True
 
-    def send_packet(self, packet: Packet):
+    def send_packet(self, packet: ClientPacket):
         if (self.connected):
-            self.sock.send(packet.craft().pack())
+            self.sock.send(packet.pack())
         else:
             raise RuntimeError("Client not connected")
 
-    def recv_packet(self) -> Packet:
+    def recv_packet(self) -> ServerPacket:
         if (self.connected):
             return self.server_factory.create_packet(self.state, self.sock.recv(self.recv_length()))
         else:
@@ -48,7 +49,7 @@ class NetworkClient:
         self.state = state
 
     @staticmethod
-    def parse_server_address(server_address):
+    def parse_server_address(server_address: str) -> str:
         try:
             socket.inet_pton(socket.AF_INET, server_address)
             return server_address
