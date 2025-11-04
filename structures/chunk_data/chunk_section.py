@@ -1,5 +1,5 @@
 from ..structure import Structure
-from ...session import Session
+from ...dataclass import Session
 from ...repr_list import *
 from ...datatypes import *
 

@@ -6,7 +6,7 @@ from .packet_processor import *
 from .packet_queue import *
 from .state_manager import *
 from ..packets import *
-from ..session import Session
+from ..dataclass import Session
 
 from typing import *
 

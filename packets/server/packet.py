@@ -1,4 +1,4 @@
-from ...session import Session
+from ...dataclass import Session
 from ...datatypes import *
 
 from abc import *

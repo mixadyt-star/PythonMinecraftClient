@@ -1,7 +1,7 @@
 from .network_client import *
 from .packets import *
 from .datatypes import *
-from .session import *
+from .dataclass import *
 
 client = NetworkClient()
 client.connect("localhost", 25565)
