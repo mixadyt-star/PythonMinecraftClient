@@ -1,4 +1,5 @@
 from .validator import Validator
+from ..dataclass import *
 from ..datatypes import *
 from .context import *
 from .path import *
@@ -8,7 +9,7 @@ from typing import *
 
 class Model:
     def __init__(self,
-                 craft_data = None,
+                 craft_data: Optional[CraftData] = None,
                  /,
                  parent_context: Optional[Context] = None,
                  local_context_path: Optional[Path] = None,
@@ -36,7 +37,7 @@ class Model:
             
             else:
                 if (type(annotation) == DataType):
-                    value = annotation.decode(craft_data)
+                    value = annotation.decode(craft_data.packet_data)
 
                     self.__setattr__(name, value)
                     local_context.append(name, value)

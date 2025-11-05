@@ -1,4 +1,5 @@
 from ..datatypes import *
+from ..dataclass import *
 from .context import *
 
 from typing import *
@@ -6,10 +7,10 @@ from typing import *
 
 class Validator:
     datatype: DataType
-    _condition: Callable[[Context, bytearray], bool]
+    _condition: Callable[[Context, CraftData], bool]
 
 def validator(datatype: DataType,
-              condition: Callable[[Context, bytearray], bool]):
+              condition: Callable[[Context, CraftData], bool]):
     
     validator = Validator
     validator.datatype = datatype
